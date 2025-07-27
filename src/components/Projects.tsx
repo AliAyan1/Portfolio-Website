@@ -25,7 +25,7 @@ const projects = [
   {
     title: "AI Chatbot",
     description: "I have developed an AI chatbot using Next.js and Tailwind CSS, featuring Text-to-Speech (TTS) functionality for real-time voice interactions. It provides an engaging, seamless conversational experience with advanced AI capabilities.",
-    live: "https://portfolio-website-eabi.vercel.app/", // Moved the live link here
+    live: "https://github.com/AliAyan1/Portfolio-Website.git", // Moved the live link here
   },
   {
     title: "3D Portfolio Website", // Changed title
