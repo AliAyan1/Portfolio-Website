@@ -4,12 +4,11 @@ import { motion } from 'framer-motion';
 export default function About() {
   return (
     <section id="about" className="py-20 px-4 bg-gradient-to-r from-blue-500 to-purple-600 relative overflow-hidden">
-      {/* Adding subtle background blobs for visual interest and to fill space */}
+      {/* Background blobs */}
       <div className="absolute top-1/4 left-0 w-64 h-64 bg-blue-300 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob" style={{ animationDelay: '0s' }}></div>
       <div className="absolute bottom-1/4 right-0 w-64 h-64 bg-purple-300 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob" style={{ animationDelay: '2s' }}></div>
       <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-pink-300 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob" style={{ animationDelay: '4s' }}></div>
 
-      {/* Increased max-w for the main content container and ensured it's above blobs */}
       <div className="max-w-6xl mx-auto relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -33,13 +32,13 @@ export default function About() {
           >
             <div className="space-y-4">
               <p className="text-gray-300 text-lg leading-relaxed">
-                I'm a passionate full-stack developer with a strong foundation in modern web technologies. I love creating digital experiences that are not only visually appealing but also highly functional and user-friendly.
+                I&apos;m a passionate full-stack developer with a strong foundation in modern web technologies. I love creating digital experiences that are not only visually appealing but also highly functional and user-friendly.
               </p>
               <p className="text-gray-300 text-lg leading-relaxed">
                 My journey in web development started with curiosity and has evolved into a career where I get to solve complex problems and build innovative solutions every day.
               </p>
               <p className="text-gray-300 text-lg leading-relaxed">
-                When I'm not coding, you can find me exploring new technologies, contributing to open source projects, or sharing my knowledge with the developer community.
+                When I&apos;m not coding, you can find me exploring new technologies, contributing to open source projects, or sharing my knowledge with the developer community.
               </p>
             </div>
           </motion.div>
