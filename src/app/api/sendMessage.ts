@@ -1,43 +1,37 @@
-import { NextApiRequest, NextApiResponse } from 'next';
 import nodemailer from 'nodemailer';
+import dotenv from 'dotenv';
 
-type ResponseData = {
-  message: string;
-};
+// Load environment variables from .env file
+dotenv.config();
 
-export default async function handler(
-  req: NextApiRequest,
-  res: NextApiResponse<ResponseData>
-) {
+export default async function handler(req: { method: string; body: { name: any; email: any; message: any; }; }, res: { status: (arg0: number) => { (): any; new(): any; json: { (arg0: { message: string; }): any; new(): any; }; }; }) {
   if (req.method === 'POST') {
     const { name, email, message } = req.body;
 
-    // Create a transporter object using Gmail's SMTP service
+    // Create a transporter with environment variables
     const transporter = nodemailer.createTransport({
-      service: 'gmail',
+      service: 'gmail', 
       auth: {
-        user: 'aliayan8967@gmail.com', // Replace with your email
-        pass: 'AliAyan1234567000',   // Replace with your email password or app password
+        user: process.env.EMAIL_USER, // Use email from .env file
+        pass: process.env.EMAIL_PASSWORD, // Use password from .env file
       },
     });
 
     const mailOptions = {
-      from: email,  // Sender's email
-      to: 'aliayan8967@gmail.com',  // Recipient's email
-      subject: `Message from ${name}`,  // Subject of the email
-      text: message,  // Body of the email
+      from: email,
+      to: 'aliayan8967@gmail.com', // Your email address
+      subject: `New message from ${name}`,
+      text: message,
     };
 
     try {
-      // Send email using transporter
       await transporter.sendMail(mailOptions);
-      res.status(200).json({ message: 'Email sent successfully!' });
+      return res.status(200).json({ message: 'Email sent successfully' });
     } catch (error) {
       console.error('Error sending email:', error);
-      res.status(500).json({ message: 'Error sending email' });
+      return res.status(500).json({ message: 'Error sending email. Please try again.' });
     }
   } else {
-    // Method not allowed
-    res.status(405).json({ message: 'Method not allowed' });
+    return res.status(405).json({ message: 'Method Not Allowed' });
   }
 }
