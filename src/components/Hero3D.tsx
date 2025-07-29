@@ -1,13 +1,38 @@
 'use client';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
+import { useEffect, useState } from 'react';
 
 export default function Hero3D() {
+  const [showProfile, setShowProfile] = useState(false);
+  useEffect(() => {
+    // Delay to allow background to animate in first
+    const timer = setTimeout(() => setShowProfile(true), 600);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <section
       id="home"
       className="w-full min-h-screen flex flex-col items-center justify-center bg-black px-4 md:px-8 lg:px-16 relative overflow-hidden"
     >
+      {/* Animated Floating Shapes */}
+      <motion.div
+        className="absolute top-10 left-10 w-32 h-32 bg-blue-400 rounded-full opacity-30 z-0"
+        animate={{ y: [0, 30, 0], x: [0, 20, 0] }}
+        transition={{ duration: 6, repeat: Infinity, repeatType: 'reverse', ease: 'easeInOut' }}
+      />
+      <motion.div
+        className="absolute bottom-20 right-20 w-40 h-40 bg-purple-500 rounded-full opacity-20 z-0"
+        animate={{ y: [0, -40, 0], x: [0, -30, 0] }}
+        transition={{ duration: 7, repeat: Infinity, repeatType: 'reverse', ease: 'easeInOut' }}
+      />
+      <motion.div
+        className="absolute top-1/2 left-1/2 w-24 h-24 bg-pink-400 rounded-full opacity-20 z-0"
+        animate={{ y: [0, 20, 0], x: [0, -20, 0] }}
+        transition={{ duration: 8, repeat: Infinity, repeatType: 'reverse', ease: 'easeInOut' }}
+      />
+      {/* Existing animated gradient background */}
       <motion.div
         className="absolute inset-0 bg-gradient-to-r from-blue-400 via-purple-600 to-blue-800 opacity-30"
         animate={{
@@ -22,10 +47,11 @@ export default function Hero3D() {
 
       <div className="max-w-6xl mx-auto w-full flex flex-col lg:flex-row items-center gap-12 lg:gap-16 relative z-10">
         <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8 }}
+          initial={{ opacity: 0, rotateY: -90, scale: 0.8, filter: 'blur(10px)' }}
+          animate={showProfile ? { opacity: 1, rotateY: 0, scale: 1, filter: 'blur(0px)', boxShadow: '0 0 40px 10px #7f5af0' } : {}}
+          transition={{ duration: 1, type: 'spring', bounce: 0.4 }}
           className="flex-shrink-0 relative z-20"
+          style={{ perspective: 1000 }}
         >
           <div className="relative">
             <Image
@@ -35,7 +61,12 @@ export default function Hero3D() {
               height={480}
               className="rounded-2xl shadow-2xl object-cover border-2 border-gray-800"
             />
-            <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-blue-500/20 to-transparent pointer-events-none"></div>
+            <motion.div
+              className="absolute inset-0 rounded-2xl pointer-events-none"
+              initial={{ boxShadow: '0 0 0px 0px #7f5af0' }}
+              animate={showProfile ? { boxShadow: '0 0 40px 10px #7f5af0' } : {}}
+              transition={{ duration: 1.2, delay: 0.2 }}
+            />
           </div>
         </motion.div>
 

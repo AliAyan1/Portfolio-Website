@@ -1,5 +1,6 @@
-'use client';
+"use client";
 import { motion } from 'framer-motion';
+import ProfileImageAnimated from './ProfileImageAnimated';
 
 const experiences = [
   {
@@ -32,6 +33,9 @@ export default function Experience() {
   return (
     <section id="experience" className="py-20 px-4 bg-gray-900">
       <div className="max-w-4xl mx-auto">
+        <div className="flex flex-col items-center lg:items-start mb-8">
+          <ProfileImageAnimated size={88} animation="rotate" className="mb-4 lg:mb-0 lg:mr-8" />
+        </div>
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}

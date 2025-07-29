@@ -1,5 +1,6 @@
-'use client';
+"use client";
 import { motion } from 'framer-motion';
+import ProfileImageAnimated from './ProfileImageAnimated';
 
 export default function About() {
   return (
@@ -10,6 +11,9 @@ export default function About() {
       <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-72 h-72 bg-pink-300 rounded-full mix-blend-multiply filter blur-xl opacity-30 animate-blob" style={{ animationDelay: '4s' }}></div>
 
       <div className="max-w-6xl mx-auto relative z-10">
+        <div className="flex flex-col items-center lg:items-start mb-8">
+          <ProfileImageAnimated size={96} animation="fade" className="mb-4 lg:mb-0 lg:mr-8" />
+        </div>
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}

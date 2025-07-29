@@ -1,13 +1,26 @@
-// src/components/Contact.tsx
-'use client'
-
+"use client";
 import { motion } from 'framer-motion'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import ProfileImageAnimated from './ProfileImageAnimated';
 
 export default function Contact() {
-  const [formData, setFormData] = useState({ name: '', email: '', message: '' })
-  const [status, setStatus] = useState('')
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    message: '',
+  })
+  const [status, setStatus] = useState('')   // status message to show success/error
+  //  for my usesate hook use kia hy jis ki waja say aik msssage dislay hu ga hat 2 ki  abaad 
+  // or neecha  os ka aik function nana hia hy 
   const [isSubmitting, setIsSubmitting] = useState(false)
+
+  // Clear the status message after 2 seconds
+  useEffect(() => {
+    if (!status) return
+
+    const timer = setTimeout(() => setStatus(''), 1000)
+    return () => clearTimeout(timer)
+  }, [status])
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
@@ -20,6 +33,7 @@ export default function Contact() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
       })
+
       const json = await res.json()
       if (res.ok && json.success) {
         setStatus('✅ Your message has been sent successfully!')
@@ -44,6 +58,10 @@ export default function Contact() {
   return (
     <section id="contact" className="py-20 px-4 bg-[#0f1e3a]">
       <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12">
+        <div className="flex flex-col items-center lg:items-start mb-8 col-span-2">
+          <ProfileImageAnimated size={88} animation="scale" className="mb-4 lg:mb-0 lg:mr-8" />
+        </div>
+        {/* INFO CARD */}
         <motion.div
           initial={{ opacity: 0, x: -50 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -71,7 +89,7 @@ export default function Contact() {
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeWidth={2}
-                    d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8m-18 11h18a2 2 0 002-2V7a2 2 0-2-2H3a2 2 0-2 2v10a2 2 0 002 2z"
+                    d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
                   />
                 </svg>
               </div>
@@ -99,7 +117,7 @@ export default function Contact() {
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeWidth={2}
-                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                    d="M3 5a2 2 0 012-2h3.28a1 1 0 .948.684l1.498 4.493a1 1 0 .502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 .011.21-.502l4.493 1.498a1 1 0 .684.949V19a2 2 0-2 2h-1C9.716 21 3 14.284 3 6V5z"
                   />
                 </svg>
               </div>
@@ -127,13 +145,13 @@ export default function Contact() {
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeWidth={2}
-                    d="M12 11c1.104 0 2-.896 2-2s-.896-2-2-2-2 .896-2 2 .896 2 2 2z"
+                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
                   />
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeWidth={2}
-                    d="M12 21s8-4.434 8-10a8 8 0-16 0c0 5.566 8 10 8 10z"
+                    d="M15 11a3 3 0-6 0 3 3 0 016 0z"
                   />
                 </svg>
               </div>
@@ -145,6 +163,7 @@ export default function Contact() {
           </div>
         </motion.div>
 
+        {/* FORM CARD */}
         <motion.div
           initial={{ opacity: 0, x: 50 }}
           whileInView={{ opacity: 1, x: 0 }}

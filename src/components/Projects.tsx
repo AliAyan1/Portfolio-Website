@@ -1,5 +1,6 @@
-'use client';
+"use client";
 import { motion } from 'framer-motion';
+import ProfileImageAnimated from './ProfileImageAnimated';
 
 const projects = [
   {
@@ -38,6 +39,9 @@ export default function Projects() {
   return (
     <section id="projects" className="py-20 px-4 bg-gradient-to-br from-blue-950 to-black relative overflow-hidden">
       <div className="max-w-7xl mx-auto z-10 relative">
+        <div className="flex flex-col items-center lg:items-start mb-8">
+          <ProfileImageAnimated size={88} animation="glow" className="mb-4 lg:mb-0 lg:mr-8" />
+        </div>
         {/* Section Title */}
         <motion.div
           initial={{ opacity: 0, y: -50 }}
