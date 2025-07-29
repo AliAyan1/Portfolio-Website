@@ -1,24 +1,31 @@
-"use client";
+// src/components/Contact.tsx
+"use client"
+
 import { motion } from 'framer-motion'
 import { useState, useEffect } from 'react'
-import ProfileImageAnimated from './ProfileImageAnimated';
+import ProfileImageAnimated from './ProfileImageAnimated'
+
+// Define the structure of the form data
+interface FormData {
+  name: string;
+  email: string;
+  message: string;
+}
 
 export default function Contact() {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<FormData>({
     name: '',
     email: '',
     message: '',
   })
-  const [status, setStatus] = useState('')   // status message to show success/error
-  //  for my usesate hook use kia hy jis ki waja say aik msssage dislay hu ga hat 2 ki  abaad 
-  // or neecha  os ka aik function nana hia hy 
+  const [status, setStatus] = useState<string>('')   // status message to show success/error
   const [isSubmitting, setIsSubmitting] = useState(false)
 
   // Clear the status message after 2 seconds
   useEffect(() => {
     if (!status) return
 
-    const timer = setTimeout(() => setStatus(''), 1000)
+    const timer = setTimeout(() => setStatus(''), 2000)
     return () => clearTimeout(timer)
   }, [status])
 

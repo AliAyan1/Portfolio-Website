@@ -1,4 +1,3 @@
-// src/app/api/sendMessage/route.ts
 import 'dotenv/config'
 import { NextResponse } from 'next/server'
 import nodemailer from 'nodemailer'
@@ -25,8 +24,14 @@ export async function POST(request: Request) {
       text: `Email: ${email}\n\nMessage:\n${message}`,
     })
     return NextResponse.json({ success: true })
-  } catch (err: any) {
+  } catch (err: unknown) {
+    // Refactor to handle unknown error type
+    if (err instanceof Error) {
+      console.error('Mail error:', err.message)
+      return NextResponse.json({ success: false, error: err.message }, { status: 500 })
+    }
     console.error('Mail error:', err)
-    return NextResponse.json({ success: false, error: err.message }, { status: 500 })
+    return NextResponse.json({ success: false, error: 'Unknown error occurred' }, { status: 500 })
   }
 }
+
