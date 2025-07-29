@@ -44,8 +44,8 @@ export default function ProfileImageAnimated({
 
   return (
     <motion.div
-      initial={variants.initial}
-      whileInView={variants.animate}
+      initial={variants.any}
+      whileInView={variants.any}
       viewport={{ once: true }}
       transition={{ duration: 0.8 }}
       className={`inline-block ${className}`}
