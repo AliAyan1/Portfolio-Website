@@ -9,7 +9,7 @@ export default function About() {
   const stats = [
     { value: "35+", label: "Projects Completed", color: "from-blue-400 to-cyan-400" },
     { value: "1+", label: "Years Experience", color: "from-purple-400 to-pink-400" },
-    { value: "50+", label: "Happy Clients", color: "from-green-400 to-emerald-400" },
+    { value: "25+", label: "Happy Clients", color: "from-green-400 to-emerald-400" },
     { value: "24/7", label: "Support", color: "from-orange-400 to-red-400" }
   ];
 
