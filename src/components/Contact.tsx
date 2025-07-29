@@ -1,31 +1,22 @@
-// src/components/Contact.tsx
-"use client"
+'use client'
 
 import { motion } from 'framer-motion'
 import { useState, useEffect } from 'react'
-import ProfileImageAnimated from './ProfileImageAnimated'
-
-// Define the structure of the form data
-interface FormData {
-  name: string;
-  email: string;
-  message: string;
-}
 
 export default function Contact() {
-  const [formData, setFormData] = useState<FormData>({
+  const [formData, setFormData] = useState({
     name: '',
     email: '',
     message: '',
   })
-  const [status, setStatus] = useState<string>('')   // status message to show success/error
+  const [status, setStatus] = useState('')   // Status message to show success/error
   const [isSubmitting, setIsSubmitting] = useState(false)
 
   // Clear the status message after 2 seconds
   useEffect(() => {
     if (!status) return
 
-    const timer = setTimeout(() => setStatus(''), 2000)
+    const timer = setTimeout(() => setStatus(''), 1000)
     return () => clearTimeout(timer)
   }, [status])
 
@@ -48,9 +39,11 @@ export default function Contact() {
       } else {
         throw new Error(json.error || 'Unknown error')
       }
-    } catch (err: any) {
-      console.error(err)
-      setStatus(`❌ Error sending message: ${err.message}`)
+    } catch (err: unknown) {
+      if (err instanceof Error) {
+        console.error(err.message)
+        setStatus(`❌ Error sending message: ${err.message}`)
+      }
     } finally {
       setIsSubmitting(false)
     }
@@ -66,7 +59,7 @@ export default function Contact() {
     <section id="contact" className="py-20 px-4 bg-[#0f1e3a]">
       <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12">
         <div className="flex flex-col items-center lg:items-start mb-8 col-span-2">
-          <ProfileImageAnimated size={88} animation="scale" className="mb-4 lg:mb-0 lg:mr-8" />
+          {/* Add ProfileImageAnimated component here */}
         </div>
         {/* INFO CARD */}
         <motion.div
@@ -76,10 +69,9 @@ export default function Contact() {
           viewport={{ once: true }}
           className="bg-gray-800 rounded-2xl p-8 space-y-8 shadow-lg"
         >
-          <h3 className="text-3xl font-bold text-white">Let's Connect</h3>
+          <h3 className="text-3xl font-bold text-white">Let&apos;s Connect</h3>
           <p className="text-gray-300">
-            I&apos;m always open to discussing new opportunities, creative ideas,
-            or potential partnerships.
+            I&apos;m always open to discussing new opportunities, creative ideas, or potential partnerships.
           </p>
 
           <div className="space-y-6">
