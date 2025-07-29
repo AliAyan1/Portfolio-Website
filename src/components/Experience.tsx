@@ -24,13 +24,7 @@ const experiences = [
     technologies: ["How to pitch clients?"]
   },
 
-    {
-    title: "Full Stack AI intern",
-    company: "Devsinc",
-    period: "2025",
-    description: "Assisted in developing company website and internal tools. Gained experience in  developing ai agents as well as Generative AI",
-    technologies: ["React", "ShadCN","21st.dev", "Node.js", "TypeScript", "MongoDB","Next.js", "API"]
-  },
+
 
 ];
 

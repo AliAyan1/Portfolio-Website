@@ -5,11 +5,7 @@ import { motion } from 'framer-motion'
 import { useState } from 'react'
 
 export default function Contact() {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: '',
-  })
+  const [formData, setFormData] = useState({ name: '', email: '', message: '' })
   const [status, setStatus] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
 
@@ -24,7 +20,6 @@ export default function Contact() {
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
       })
-
       const json = await res.json()
       if (res.ok && json.success) {
         setStatus('✅ Your message has been sent successfully!')
@@ -43,13 +38,12 @@ export default function Contact() {
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
-    setFormData((f) => ({ ...f, [e.target.name]: e.target.value }))
+    setFormData(f => ({ ...f, [e.target.name]: e.target.value }))
   }
 
   return (
     <section id="contact" className="py-20 px-4 bg-[#0f1e3a]">
       <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12">
-        {/* Info Card (left) */}
         <motion.div
           initial={{ opacity: 0, x: -50 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -77,7 +71,7 @@ export default function Contact() {
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeWidth={2}
-                    d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                    d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8m-18 11h18a2 2 0 002-2V7a2 2 0-2-2H3a2 2 0-2 2v10a2 2 0 002 2z"
                   />
                 </svg>
               </div>
@@ -91,6 +85,7 @@ export default function Contact() {
                 </a>
               </div>
             </div>
+
             {/* Phone */}
             <div className="flex items-center gap-4">
               <div className="p-3 bg-blue-600 rounded-lg">
@@ -104,7 +99,7 @@ export default function Contact() {
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeWidth={2}
-                    d="M3 5a2 2 0 012-2h3.28a1 1 0 .948.684l1.498 4.493a1 1 0 .502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 .011.21-.502l4.493 1.498a1 1 0 .684.949V19a2 2 0-2 2h-1C9.716 21 3 14.284 3 6V5z"
+                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
                   />
                 </svg>
               </div>
@@ -118,6 +113,7 @@ export default function Contact() {
                 </a>
               </div>
             </div>
+
             {/* Location */}
             <div className="flex items-center gap-4">
               <div className="p-3 bg-blue-600 rounded-lg">
@@ -131,13 +127,13 @@ export default function Contact() {
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeWidth={2}
-                    d="M17.657 16.657L13.414 20.9a1.998 1.998 0-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
+                    d="M12 11c1.104 0 2-.896 2-2s-.896-2-2-2-2 .896-2 2 .896 2 2 2z"
                   />
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
                     strokeWidth={2}
-                    d="M15 11a3 3 0-6 0 3 3 0 016 0z"
+                    d="M12 21s8-4.434 8-10a8 8 0-16 0c0 5.566 8 10 8 10z"
                   />
                 </svg>
               </div>
@@ -149,7 +145,6 @@ export default function Contact() {
           </div>
         </motion.div>
 
-        {/* Form Card (right) */}
         <motion.div
           initial={{ opacity: 0, x: 50 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -171,6 +166,7 @@ export default function Contact() {
                 className="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-white focus:border-blue-400 transition"
               />
             </div>
+
             <div>
               <label htmlFor="email" className="block text-gray-300 mb-2">
                 Email
@@ -185,6 +181,7 @@ export default function Contact() {
                 className="w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-white focus:border-blue-400 transition"
               />
             </div>
+
             <div>
               <label htmlFor="message" className="block text-gray-300 mb-2">
                 Message
